@@ -1,8 +1,10 @@
 #!/bin/bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 apt-get --quiet update
 
-apt-get --quiet --yes install mc postfix unzip zip apt-file apt-show-versions lynx elinks munin-node sysstat apparmor-utils ntp htop screen
+apt-get --quiet --yes install mc postfix unzip zip apt-file apt-show-versions lynx elinks sysstat apparmor-utils ntp htop screen apt-transport-https wget
 
 #apt-get install lshw pciutils
 
