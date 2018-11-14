@@ -1,9 +1,36 @@
----
-
-- name: apply common configuration to all nodes
-  hosts: all
+- hosts: all
   remote_user: root
+  become: yes
+  tasks:
+  - name: standard packeges
+    apt:
+      name: "{{ packages }}"
+      state: latest
+    vars:
+      packages:
+      - mc
+      - postfix
+      - unzip
+      - zip
+      - apt-file
+      - apt-show-versions
+      - lynx
+      - elinks
+      - sysstat
+      - apparmor-utils
+      - ntp
+      - htop
+      - screen
+      - apt-transport-https
+      - wget
+  - name: firewall setup \\#1
+    apt:
+      name: ufw
+      state: absent
+      purge: yes
+  - name: firewall setup \\#2
+    apt:
+      name: [iptables-persistent, netfilter-persistent]
+      state: latest
 
-  roles:
-    - common
 
