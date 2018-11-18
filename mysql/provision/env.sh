@@ -54,7 +54,7 @@ echo "done."
 
 #
 
-echo -n "updating /etc/profile.d/.screenrc..."
+echo -n "updating /root/.screenrc..."
 cat >> /root/.screenrc <<- "EOF"
 
 # automatic config by Ser@fin

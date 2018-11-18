@@ -1,4 +1,5 @@
 data/
 */.vagrant/
 *.log
+*.retry
 commands.txt
