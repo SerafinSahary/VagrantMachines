@@ -1,0 +1,3 @@
+- import_playbook: ../masterconfig/main.yml
+
+# vi: set expandtab:
