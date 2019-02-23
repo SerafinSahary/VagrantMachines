@@ -5,4 +5,5 @@ set shiftwidth=2
 set noautoindent
 set nowrap
 set modeline
+set noexpandtab
 

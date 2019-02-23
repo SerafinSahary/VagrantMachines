@@ -1,3 +1,6 @@
+---
+### Main config for Ubuntu 18.04 LTS server by Ser@fin
+
 - hosts: all
   remote_user: root
   become: yes
@@ -8,7 +11,7 @@
       state: latest
       autoclean: yes
       autoremove: yes
-      update_cache: yes
+      update_cache: no
     vars:
       packages:
       - mc
