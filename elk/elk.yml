@@ -1,3 +1,13 @@
-- import_playbook: ../masterconfig/main.yml
+---
+### Main config for Ubuntu 18.04 LTS server by Ser@fin
+
+- hosts: all
+  remote_user: root
+  become: yes
+  vars:
+    verbose: false
+    log_dir: "log/elk/{{ inventory_hostname }}"
+  tasks:
+  - import_tasks: ../masterconfig/base.yml
 
 # vi: set expandtab:
