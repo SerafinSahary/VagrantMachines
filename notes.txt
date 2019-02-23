@@ -1,0 +1,3 @@
+https://www.cyberciti.biz/faq/ansible-reboot-linux-machine-or-server-with-playbooks/
+https://github.com/enginyoyen/vagrant-multi-machine/blob/master/Vagrantfile
+https://github.com/enginyoyen/ansible-best-practises
