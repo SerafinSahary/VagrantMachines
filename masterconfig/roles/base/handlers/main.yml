@@ -1,0 +1,7 @@
+---
+### Firewall service
+
+- name: restart firewall
+  service: name=netfilter-persistent state=restarted
+
+# vi: set expandtab:

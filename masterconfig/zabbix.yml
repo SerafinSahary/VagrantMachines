@@ -1,3 +1,4 @@
+
 - name: Add Zabbix repo key
   apt_key:
     id: xxx

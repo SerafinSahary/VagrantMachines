@@ -1,0 +1,12 @@
+---
+### Environment setup
+
+- name: environment setup - screenrc
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+   - { src: 'roles/base/files/vimrc', dest: '/root/.vimrc' }
+   - { src: 'roles/base/files/screenrc', dest: '/root/.screenrc' }
+   - { src: 'roles/base/files/screenrc', dest: '/etc/skel/.screenrc' }
+   - { src: 'roles/base/files/tmout.sh', dest: '/etc/profile.d/tmout.sh' }
+
+# vi: set expandtab:

@@ -1,0 +1,23 @@
+---
+### NTP server setup
+
+- name: NTP setup - systemd-timesyncd.service
+  service:
+    name: systemd-timesyncd.service
+    state: stopped
+    enabled: no
+- name: NTP setup - packages installation
+  apt: name=ntp state=latest
+- name: NTP setup - initial config
+  register: ntpsetup
+  copy:
+    src: roles/base/files/ntp.conf
+    dest: /etc/ntp.conf
+    owner: root
+    group: root
+    mode: 0644
+- name: NTP setup - restart
+  when: ntpsetup.changed
+  service: name=ntp state=restarted
+
+# vi: set expandtab:

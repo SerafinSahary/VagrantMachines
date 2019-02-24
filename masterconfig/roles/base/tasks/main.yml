@@ -1,0 +1,13 @@
+---
+### base tasks
+
+- name: packages
+  import_tasks: packages.yml
+- name: firewall setup
+  import_tasks: firewall.yml
+- name: NTP server setup
+  import_tasks: ntp.yml
+- name: environment setup
+  import_tasks: envsetup.yml
+
+# vi: set expandtab:
