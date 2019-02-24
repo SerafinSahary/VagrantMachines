@@ -7,6 +7,8 @@
   vars:
     verbose: false
     log_dir: "log/elk/{{ inventory_hostname }}"
+  handlers:
+  - import_tasks: ../masterconfig/base-handlers.yml
   tasks:
   - import_tasks: ../masterconfig/base.yml
 
