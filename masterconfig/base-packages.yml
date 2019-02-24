@@ -1,0 +1,27 @@
+---
+### Base packages for Ubuntu OS
+
+- name: standard packeges
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    autoclean: yes
+    autoremove: yes
+    update_cache: no
+  vars:
+    packages:
+    - mc
+    - postfix
+    - unzip
+    - zip
+    - apt-file
+    - apt-show-versions
+    - lynx
+    - elinks
+    - sysstat
+    - apparmor-utils
+    - htop
+    - screen
+    - apt-transport-https
+    - wget
+

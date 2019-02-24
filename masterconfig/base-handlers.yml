@@ -1,0 +1,5 @@
+---
+### Basic handlers
+
+- name: restart firewall
+  service: name=netfilter-persistent state=restarted

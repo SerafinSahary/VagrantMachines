@@ -1,50 +1,8 @@
 ---
 ### Base tasks for Ubuntu 18.04 LTE
 
-- name: standard packeges
-  apt:
-    name: "{{ packages }}"
-    state: latest
-    autoclean: yes
-    autoremove: yes
-    update_cache: no
-  vars:
-    packages:
-    - mc
-    - postfix
-    - unzip
-    - zip
-    - apt-file
-    - apt-show-versions
-    - lynx
-    - elinks
-    - sysstat
-    - apparmor-utils
-    - htop
-    - screen
-    - apt-transport-https
-    - wget
-
-- name: firewall setup - ufw removal
-  apt:
-    name: ufw
-    state: absent
-    purge: yes
-- name: firewall setup - packages installation
-  apt:
-    name: [iptables-persistent, netfilter-persistent]
-    state: latest
-- name: firewall setup - initial config
-  register: firewalsetup
-  copy:
-    src: templates/rules.v4
-    dest: /etc/iptables/rules.v4
-    owner: root
-    group: root
-    mode: 0644
-- name: firewall setup - restart
-  when: firewalsetup.changed
-  service: name=netfilter-persistent state=restarted
+- import_tasks: base-packages.yml
+- import_tasks: base-firewall.yml
 
 - name: NTP setup - systemd-timesyncd.service
   service:

@@ -5,6 +5,8 @@
   remote_user: root
   become: yes
   vars:
+  handlers:
+  - import_tasks: base-handlers.yml
   tasks:
   - import_tasks: base.yml
 
