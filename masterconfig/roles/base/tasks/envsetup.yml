@@ -9,16 +9,17 @@
    - { src: 'roles/base/files/screenrc', dest: '/etc/skel/.screenrc' }
    - { src: 'roles/base/files/tmout.sh', dest: '/etc/profile.d/tmout.sh' }
 
-- name: bashrc for root
-  block:
-  - lineinfile:
-      path: /root/.bashrc
-      regexp: ^#force_color_prompt
-      line: force_color_prompt=yes
-      backup: yes
-  - replace:
-      path: /root/.bashrc
-      regexp: ^(\s+PS1=.*);32m(.*)$
-      replace: \1;31m\2
+- name: bashrc for root - color prompt
+  lineinfile:
+    path: /root/.bashrc
+    regexp: ^#force_color_prompt
+    line: force_color_prompt=yes
+    backup: yes
+
+- name: bashrc for root - red prompt
+  replace:
+    path: /root/.bashrc
+    regexp: ^(\s+PS1=.*);32m(.*)$
+    replace: \1;31m\2
 
 # vi: set expandtab:
