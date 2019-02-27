@@ -10,13 +10,20 @@
   register: zabbixrepoadded
   apt:
     deb: /root/zabbix-release_4.0-2+bionic_all.deb
-  notify: apt repos update
 
 - name: Install Zabbix Agent
   apt:
     update_cache: yes
     name: zabbix-agent
     state: latest
+
+- name: Zabbix Agent log dir
+  file:
+    state: directory
+    path: /var/log/zabbix-agent
+    owner: zabbix
+    group: zabbix
+    mode: 0755
 
 - name: Configure Zabbix
   template:
