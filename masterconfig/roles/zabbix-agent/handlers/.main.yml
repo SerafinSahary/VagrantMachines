@@ -1,0 +1,7 @@
+---
+### Handler for apt-get update
+
+- name: apt repos update
+  apt:
+    update_cache: yes
+
