@@ -25,4 +25,9 @@
     - apt-transport-https
     - wget
 
+- name: unattended upgrades to be disabled
+  block:
+    command: systemctl stop unattended-upgrades
+    command: systemctl disable unattended-upgrades
+
 # vi: set expandtab:
