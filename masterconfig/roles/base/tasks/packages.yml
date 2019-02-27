@@ -26,8 +26,13 @@
     - wget
 
 - name: unattended upgrades to be disabled
-  block:
-    command: systemctl stop unattended-upgrades
-    command: systemctl disable unattended-upgrades
+  systemd:
+    name: unattended-upgrades
+    state: stopped
+    enabled: no
+#  command: "{{ item }}"
+#  with_items:
+#  - systemctl stop unattended-upgrades
+#  - systemctl disable unattended-upgrades
 
 # vi: set expandtab:
