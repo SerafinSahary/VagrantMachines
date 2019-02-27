@@ -6,8 +6,12 @@
   become: yes
   vars:
     zabbixserver: 127.1.1.1
+    elkclustername: test-elk-cluster
   roles:
     - base
     - zabbix-agent
+    - etckeeper
+    - elasticsearch
+    - logstash
 
 # vi: set expandtab:
