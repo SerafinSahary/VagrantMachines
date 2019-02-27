@@ -1,0 +1,19 @@
+---
+
+- name: adding elasticsearch repo key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: adding elasticsearch repository
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/6.x/apt stable main
+    state: present
+    filename: elasticsearch
+  register: elasticsearchrepo
+
+- name: apt repositories update
+  when: elasticsearchrepo.changed
+  apt:
+    update_cache: yes
+

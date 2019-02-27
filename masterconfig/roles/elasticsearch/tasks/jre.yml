@@ -1,0 +1,6 @@
+---
+
+- name: installing jre
+  apt:
+    name: openjdk-11-jre-headless
+

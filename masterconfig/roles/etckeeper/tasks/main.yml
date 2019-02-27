@@ -1,0 +1,15 @@
+---
+
+- name: etckeeper installation
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    autoclean: yes
+    autoremove: yes
+    update_cache: no
+  vars:
+    packages:
+    - git
+    - etckeeper
+
+# vi: set expandtab:
