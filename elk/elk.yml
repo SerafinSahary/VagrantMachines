@@ -4,7 +4,10 @@
 - hosts: all
   remote_user: root
   become: yes
+  vars:
+    zabbixserver: 127.1.1.1
   roles:
     - base
+    - zabbix-agent
 
 # vi: set expandtab:
