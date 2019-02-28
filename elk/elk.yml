@@ -11,6 +11,11 @@
     - base
     - zabbix-agent
     - etckeeper
+
+- hosts: elasticsearch
+  vars:
+    elkclustername: test-elk-cluster
+  roles:
     - elasticsearch
     - logstash
 
