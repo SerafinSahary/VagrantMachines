@@ -1,7 +1,7 @@
 ---
 
 - import_tasks: ../../elasticsearch/tasks/elasticrepo.yml
-- import_tasks: ../../elasticsearch/tasks/jre.yml
+- import_tasks: jre.yml
 
 - name: installing logstash package
   apt:

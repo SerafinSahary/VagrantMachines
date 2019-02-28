@@ -1,0 +1,6 @@
+---
+
+- name: installing jre
+  apt:
+    name: openjdk-8-jre-headless
+
