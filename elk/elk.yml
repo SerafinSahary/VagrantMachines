@@ -6,17 +6,26 @@
   become: yes
   vars:
     zabbixserver: 127.1.1.1
-    elkclustername: test-elk-cluster
   roles:
     - base
     - zabbix-agent
     - etckeeper
 
 - hosts: elasticsearch
+  remote_user: root
+  become: yes
   vars:
     elkclustername: test-elk-cluster
   roles:
     - elasticsearch
-    - logstash
+
+#- hosts: logstash
+#  remote_user: root
+#  become: yes
+#  vars:
+#    elastictarget: "192.168.33.10:9200"
+#    jvmheapsize: 512m
+#  roles:
+#    - logstash
 
 # vi: set expandtab:
