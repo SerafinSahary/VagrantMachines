@@ -1,0 +1,16 @@
+---
+### simple playbook
+
+- hosts: all
+  remote_user: root
+  become: yes
+  tasks:
+  - name: cowsay install
+    apt:
+      name: cowsay
+      state: latest
+      autoclean: yes
+      autoremove: yes
+      update_cache: no
+
+# vi: set expandtab:
