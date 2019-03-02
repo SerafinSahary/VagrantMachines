@@ -22,4 +22,13 @@
     regexp: ^(\s+PS1=.*);32m(.*)$
     replace: \1;31m\2
 
+- name: bashrc for root - command aliases
+  blockinfile:
+    path: /root/.bashrc
+    block: |
+      alias rm='rm -i'
+      alias cp='cp -i'
+      alias mv='mv -i'
+      set -o vi
+
 # vi: set expandtab:
