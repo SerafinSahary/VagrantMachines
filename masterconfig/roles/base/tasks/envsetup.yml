@@ -12,9 +12,8 @@
 - name: bashrc for root - color prompt
   lineinfile:
     path: /root/.bashrc
-    regexp: ^#force_color_prompt
+    regexp: ^[#\s]?force_color_prompt=yes
     line: force_color_prompt=yes
-    backup: yes
 
 - name: bashrc for root - red prompt
   replace:
