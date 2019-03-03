@@ -1,0 +1,19 @@
+---
+
+- import_tasks: ../../elasticsearch/tasks/elasticrepo.yml
+
+- name: installing kibana package
+  apt:
+    name: kibana
+    state: latest
+
+- name: setup kibana service
+  systemd:
+    name: kibana
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+
+- import_tasks: apache_proxy.yml
+
+# vi: set expandtab: set noai:

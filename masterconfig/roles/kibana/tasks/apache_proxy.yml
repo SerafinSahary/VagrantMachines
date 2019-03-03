@@ -1,0 +1,19 @@
+---
+
+- name: installing Apache server
+  apt:
+    name: apache2
+    state: latest
+
+- name: enable proxy module
+  apache2_module:
+    name: proxy
+    state: present
+  notify: restart apache2
+
+#- name: configure proxy module
+#  apache2_mod_proxy:
+#    balancer_vhost: "{{ kibana_vhost }}"
+#    member_host: "{{ kibana_host2proxy }}"
+#  notify: restart apache2
+
