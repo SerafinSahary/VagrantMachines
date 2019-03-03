@@ -28,4 +28,13 @@
 #  roles:
 #    - logstash
 
+- hosts: kibana
+  remote_user: root
+  become: yes
+  vars:
+    kibana_host2proxy: "127.0.0.1:5601"
+    kibana_vhost: "192.168.33.11"
+  roles:
+    - kibana
+
 # vi: set expandtab:
