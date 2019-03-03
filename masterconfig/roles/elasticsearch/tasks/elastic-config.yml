@@ -21,9 +21,10 @@
 
 - name: configure elasticsearch instance - discovery settings
   lineinfile:
+    # beware - this works only when playbook is run for all hosts in the impacted group, fail is expected when run for single host
     path: /etc/elasticsearch/elasticsearch.yml
     regexp: '^[#\s]?discovery.zen.ping.unicast.hosts:'
-    line: "discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch'] %} \"{{ hostvars[host]['ansible_facts']['all_ipv4_addresses'][1] }}\", {% endfor %}"
+    line: "discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch'] %} \"{{ hostvars[host]['ansible_facts']['all_ipv4_addresses'][0] }}\", {% endfor %}"
 
 - name: configure elasticsearch instance - discovery settings2
   replace:
