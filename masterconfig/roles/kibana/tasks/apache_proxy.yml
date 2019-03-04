@@ -11,9 +11,12 @@
     state: present
   notify: restart apache2
 
-#- name: configure proxy module
-#  apache2_mod_proxy:
-#    balancer_vhost: "{{ kibana_vhost }}"
-#    member_host: "{{ kibana_host2proxy }}"
-#  notify: restart apache2
+- name: configure proxy module
+  blockinfile:
+    path: /etc/apache2/sites-available/000-default.conf
+    insertbefore: '</VirtualHost>'
+    block: "ProxyPass \"/kibana/\" \"http://127.0.0.1:5601\""
+    #validate: 
+  notify: restart apache2
 
+# vi: set expandtab

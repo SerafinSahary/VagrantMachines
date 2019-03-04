@@ -1,6 +1,13 @@
 ---
 
+- name: restart kibana
+  systemd:
+    name: kibana
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+
 - name: restart apache2
   service: name=apache2 state=restarted
 
-# vi: set expandtab:
+# vi: set expandtab

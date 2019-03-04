@@ -2,18 +2,33 @@
 
 - import_tasks: ../../elasticsearch/tasks/elasticrepo.yml
 
-- name: installing kibana package
+- name: install kibana package
   apt:
     name: kibana
     state: latest
+  notify: restart kibana
 
-- name: setup kibana service
-  systemd:
-    name: kibana
-    daemon_reload: yes
-    enabled: yes
-    state: restarted
+- name: configure kibana name
+  lineinfile:
+    path: /etc/kibana/kibana.yml
+    regexp: '^[#\s]*server.name:'
+    line: "server.name: \"{{ kibana_name }}\""
+  notify: restart kibana
+
+- name: configure kibana basepath
+  lineinfile:
+    path: /etc/kibana/kibana.yml
+    regexp: '^[#\s]*server.basePath:'
+    line: "server.basePath: \"{{ kibana_basepath }}\""
+  notify: restart kibana
+
+- name: configure kibana elasticsearch hosts
+  lineinfile:
+    path: /etc/kibana/kibana.yml
+    regexp: '^[#\s]*elasticsearch.hosts:'
+    line: "elasticsearch.hosts: \"{{ kibana_elasticsearchhosts }}\""
+  notify: restart kibana
 
 - import_tasks: apache_proxy.yml
 
-# vi: set expandtab: set noai:
+# vi: set expandtab
