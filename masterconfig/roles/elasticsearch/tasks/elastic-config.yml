@@ -4,32 +4,33 @@
 - name: configure elasticsearch instance - cluster name
   lineinfile:
     path: /etc/elasticsearch/elasticsearch.yml
-    regexp: '^[#\s]?cluster.name:'
-    line: 'cluster.name: {{ elkclustername }}'
+    regexp: '^[#\s]*cluster.name:'
+    line: 'cluster.name: {{ elasticsearch_clustername }}'
 
 - name: configure elasticsearch instance - node name
   lineinfile:
     path: /etc/elasticsearch/elasticsearch.yml
-    regexp: '^[#\s]?node.name:'
+    regexp: '^[#\s]*node.name:'
     line: "node.name: {{ ansible_hostname }}"
 
 - name: configure elasticsearch instance - network host
   lineinfile:
     path: /etc/elasticsearch/elasticsearch.yml
-    regexp: '^[#\s]?network.host:'
-    line: "network.host: {{ ansible_all_ipv4_addresses[1] }}"
+    regexp: '^[#\s]*network.host:'
+    line: "network.host: {{ ansible_host }}"
 
 - name: configure elasticsearch instance - discovery settings
   lineinfile:
     # beware - this works only when playbook is run for all hosts in the impacted group, fail is expected when run for single host
     path: /etc/elasticsearch/elasticsearch.yml
-    regexp: '^[#\s]?discovery.zen.ping.unicast.hosts:'
-    line: "discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch'] %} \"{{ hostvars[host]['ansible_facts']['all_ipv4_addresses'][0] }}\", {% endfor %}"
+    regexp: '^[#\s]*discovery.zen.ping.unicast.hosts:'
+    #line: "discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch'] %} \"{{ hostvars[host]['ansible_facts']['all_ipv4_addresses'][0] }}\", {% endfor %}"
+    line: "discovery.zen.ping.unicast.hosts: {{ elasticsearch_discovery }}"
 
-- name: configure elasticsearch instance - discovery settings2
-  replace:
-    path: /etc/elasticsearch/elasticsearch.yml
-    regexp: '^([#\s]?discovery.zen.ping.unicast.hosts:.+),\s?$'
-    replace: '\1 ]'
+#- name: configure elasticsearch instance - discovery settings2
+#  replace:
+#    path: /etc/elasticsearch/elasticsearch.yml
+#    regexp: '^([#\s]?discovery.zen.ping.unicast.hosts:.+),\s?$'
+#    replace: '\1 ]'
 
 # vi: set expandtab: set noai:
