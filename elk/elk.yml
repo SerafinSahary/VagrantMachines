@@ -6,6 +6,7 @@
   become: yes
   vars:
     zabbixserver: 127.1.1.1
+    firewall_opentcpports: 80,9200,9300
   roles:
     - base
     - zabbix-agent
@@ -15,7 +16,8 @@
   remote_user: root
   become: yes
   vars:
-    elkclustername: test-elk-cluster
+    elasticsearch_clustername: test-elk-cluster
+    elasticsearch_discovery: '[ "192.168.33.10", "192.168.33.11" ]'
   roles:
     - elasticsearch
 
@@ -35,9 +37,9 @@
     kibana_host2proxy: "127.0.0.1:5601"
     kibana_vhost: "192.168.33.11"
     kibana_name: "kibana-test"
-    kibana_basepath: "/kibana/"
-    kibana_elasticsearchhosts: '[ \"http://192.168.33.10:9200\", \"http://192.168.33.11:9200\" ]'
+    kibana_basepath: "/kibana"
+    kibana_elasticsearchhosts: '[ "http://192.168.33.10:9200", "http://192.168.33.11:9200" ]'
   roles:
     - kibana
 
-# vi: set expandtab:
+# vi: set expandtab

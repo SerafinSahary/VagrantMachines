@@ -7,16 +7,18 @@
 
 - name: enable proxy module
   apache2_module:
-    name: proxy
+    name: "{{ item }}"
     state: present
+  loop:
+    - proxy
+    - proxy_http
   notify: restart apache2
 
 - name: configure proxy module
   blockinfile:
     path: /etc/apache2/sites-available/000-default.conf
     insertbefore: '</VirtualHost>'
-    block: "ProxyPass \"/kibana/\" \"http://127.0.0.1:5601\""
-    #validate: 
+    block: 'ProxyPass "/kibana/" "http://127.0.0.1:5601/kibana/"'
   notify: restart apache2
 
 # vi: set expandtab

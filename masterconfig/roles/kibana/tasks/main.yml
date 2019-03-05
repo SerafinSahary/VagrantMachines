@@ -26,7 +26,7 @@
   lineinfile:
     path: /etc/kibana/kibana.yml
     regexp: '^[#\s]*elasticsearch.hosts:'
-    line: "elasticsearch.hosts: \"{{ kibana_elasticsearchhosts }}\""
+    line: "elasticsearch.hosts: {{ kibana_elasticsearchhosts }}"
   notify: restart kibana
 
 - import_tasks: apache_proxy.yml
