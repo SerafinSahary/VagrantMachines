@@ -96,3 +96,48 @@ Optimize-Volume -DriveLetter C
 
 sdelete -z c:
 ```
+
+16. Shutdown machine and prepare for packaging
+
+machine disk compacting:
+```
+VBoxManage modifymedium <diskfile>.vdi --compact
+```
+
+17. Build the package and add it to Vagrant boxes
+
+```
+vagrant package --base <baseboxname> --output win2016.box --vagrantfile Vagrantfile
+```
+
+where Vagrantfile content is
+
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.guest = :windows
+  config.vm.communicator = "winrm"
+  config.vm.base_mac = "<provide here mac address of the basebox interface>"
+
+  config.vm.provider "virtualbox" do |v|
+    v.gui = true
+  end
+
+end
+```
+
+and finally add it to vagrant:
+
+```
+vagrant box add <box name> win2016.box
+```
+
+18. Test It!
+
+```
+vagrant box list
+vagrant init <box name>
+vagrant up
+```

@@ -12,11 +12,10 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "win2012"
+  config.vm.box = "serafin/win2016"
 
   config.vm.guest = :windows
   config.vm.communicator = "winrm"
-  config.vm.base_mac = "080027BF5DEE"
 
   config.winrm.username = "vagrant"
   config.winrm.password = "vagrant"
