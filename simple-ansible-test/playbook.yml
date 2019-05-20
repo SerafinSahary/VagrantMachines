@@ -1,0 +1,13 @@
+---
+### Main config for Ubuntu 18.04 LTS server by Ser@fin
+
+- hosts: all
+  remote_user: root
+  become: yes
+  vars:
+  tasks:
+  - name: touchtile
+    command:
+      touch /root/aaa
+
+# vi: set expandtab:
