@@ -24,6 +24,9 @@
     - screen
     - apt-transport-https
     - wget
+    - ca-certificates
+    - curl
+    - software-properties-common
 
 - name: unattended upgrades to be disabled
   systemd:
