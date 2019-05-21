@@ -3,10 +3,9 @@
 - name: etckeeper installation
   apt:
     name: "{{ packages }}"
-    state: latest
-    autoclean: yes
-    autoremove: yes
+    state: present
     update_cache: no
+    force_apt_get: yes
   vars:
     packages:
     - git

@@ -10,12 +10,20 @@
   register: zabbixrepoadded
   apt:
     deb: /root/zabbix-release_4.0-2+bionic_all.deb
+    force_apt_get: yes
+
+- name: apt repositories update
+  when: zabbixrepoadded.changed
+  apt:
+    update_cache: yes
+    force_apt_get: yes
 
 - name: Install Zabbix Agent
   apt:
-    update_cache: yes
+    update_cache: no
     name: zabbix-agent
-    state: latest
+    state: present
+    force_apt_get: yes
 
 - name: Zabbix Agent log dir
   file:

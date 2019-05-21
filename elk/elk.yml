@@ -42,4 +42,12 @@
   roles:
     - kibana
 
+- hosts: elastalert
+  remote_user: root
+  become: yes
+  vars:
+  roles:
+    - docker
+    - elastalert
+
 # vi: set expandtab

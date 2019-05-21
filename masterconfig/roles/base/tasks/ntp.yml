@@ -6,8 +6,13 @@
     name: systemd-timesyncd.service
     state: stopped
     enabled: no
+
 - name: NTP setup - packages installation
-  apt: name=ntp state=latest
+  apt:
+    name: ntp
+    state: present
+    force_apt_get: yes
+
 - name: NTP setup - initial config
   register: ntpsetup
   copy:
@@ -16,8 +21,6 @@
     owner: root
     group: root
     mode: 0644
-- name: NTP setup - restart
-  when: ntpsetup.changed
-  service: name=ntp state=restarted
+  notify: restart ntp
 
 # vi: set expandtab:

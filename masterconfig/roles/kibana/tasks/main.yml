@@ -5,7 +5,8 @@
 - name: install kibana package
   apt:
     name: kibana
-    state: latest
+    state: present
+    force_apt_get: yes
   notify: restart kibana
 
 - name: configure kibana name

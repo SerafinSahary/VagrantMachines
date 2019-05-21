@@ -6,7 +6,8 @@
 - name: installing logstash package
   apt:
     name: logstash
-    state: latest
+    state: present
+    force_apt_get: yes
 
 #- name: configure elasticsearch instance - cluster name
 #  lineinfile:

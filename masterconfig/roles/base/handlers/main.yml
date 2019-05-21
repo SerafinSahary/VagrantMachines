@@ -2,6 +2,13 @@
 ### Firewall service
 
 - name: restart firewall
-  service: name=netfilter-persistent state=restarted
+  service:
+    name: netfilter-persistent
+    state: restarted
+
+- name: restart ntp
+  service:
+    name: ntp
+    state: restarted
 
 # vi: set expandtab:

@@ -6,7 +6,8 @@
 - name: installing elasticsearch package
   apt:
     name: elasticsearch
-    state: latest
+    state: present
+    force_apt_get: yes
 
 - import_tasks: elastic-config.yml
 

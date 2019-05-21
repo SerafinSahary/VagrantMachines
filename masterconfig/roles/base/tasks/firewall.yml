@@ -6,11 +6,13 @@
     name: ufw
     state: absent
     purge: yes
+    force_apt_get: yes
 
 - name: firewall setup - packages installation
   apt:
     name: [iptables-persistent, netfilter-persistent]
-    state: latest
+    state: present
+    force_apt_get: yes
 
 - name: firewall setup - initial config
   register: firewalsetup

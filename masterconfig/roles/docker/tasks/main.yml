@@ -7,16 +7,36 @@
 - name: Add Docker APT repository
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+  register: dockerrepo
 
-- name: Install list of packages
+- name: apt repositories update
+  when: dockerrepo.changed
   apt:
-    name: "{{ item }}"
-    state: present
     update_cache: yes
-  with_items:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
+
+- name: Install Docker packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: no
+    force_apt_get: yes
+  vars:
+    packages:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+
+- name: Install Python packages manager
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: no
+    force_apt_get: yes
+
+- name: Install Python module for Docker
+  pip:
+    name: docker
+    state: present
 
 
 # vi: set expandtab:

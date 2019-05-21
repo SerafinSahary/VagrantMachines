@@ -1,0 +1,11 @@
+---
+### ElastAlert installation
+
+- name: docker image pull
+  docker_image:
+    name: bitsensor/elastalert
+    source: pull
+    state: present
+    tag: latest
+
+# vi: set expandtab:
