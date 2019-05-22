@@ -2,7 +2,7 @@
 ### Environment setup
 
 - name: environment setup - screenrc
-  copy: src={{ item.src }} dest={{ item.dest }}
+  copy: src={{ item.src }} dest={{ item.dest }} force=no
   with_items:
    - { src: 'roles/base/files/vimrc', dest: '/root/.vimrc' }
    - { src: 'roles/base/files/screenrc', dest: '/root/.screenrc' }

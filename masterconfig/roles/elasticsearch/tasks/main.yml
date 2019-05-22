@@ -28,6 +28,7 @@
     name: elasticsearch
     daemon_reload: yes
     enabled: yes
-    state: restarted
+    #state: restarted
+    state: started
 
 # vi: set expandtab: set noai:
