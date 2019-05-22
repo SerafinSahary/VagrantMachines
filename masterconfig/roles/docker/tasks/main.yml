@@ -1,10 +1,10 @@
 ---
 ### Docker installation
 
-- name: Add Docker GPG key
+- name: add Docker GPG key
   apt_key: url=https://download.docker.com/linux/ubuntu/gpg
 
-- name: Add Docker APT repository
+- name: add Docker APT repository
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
   register: dockerrepo
@@ -14,7 +14,7 @@
   apt:
     update_cache: yes
 
-- name: Install Docker packages
+- name: install Docker packages
   apt:
     name: "{{ packages }}"
     state: present
@@ -26,17 +26,20 @@
       - docker-ce-cli
       - containerd.io
 
-- name: Install Python packages manager
-  apt:
-    name: python3-pip
-    state: present
-    update_cache: no
-    force_apt_get: yes
-
-- name: Install Python module for Docker
-  pip:
+- name: setup Docker service
+  systemd:
     name: docker
-    state: present
+    daemon_reload: yes
+    enabled: yes
+    state: started
 
+- name: daemon config file
+  copy:
+    src: roles/docker/files/daemon.json
+    dest: /etc/docker/daemon.json
+    force: no
+  notify: restart Docker daemon
+
+- import_tasks: python_modules.yml
 
 # vi: set expandtab:

@@ -1,0 +1,16 @@
+---
+### Python modules for Docker management
+
+- name: install Python packages manager
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: no
+    force_apt_get: yes
+
+- name: install Python module for Docker
+  pip:
+    name: docker
+    state: present
+
+# vi: set expandtab:

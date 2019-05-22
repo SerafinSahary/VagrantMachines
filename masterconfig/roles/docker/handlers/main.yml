@@ -1,0 +1,9 @@
+---
+### handlers for docker role
+
+- name: restart Docker daemon
+  service:
+    name: docker
+    state: restarted
+
+# vi: set expandtab:

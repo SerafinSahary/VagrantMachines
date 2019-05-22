@@ -1,0 +1,8 @@
+{
+  "bip": "10.10.99.1/24",
+  "fixed-cidr": "10.10.99.0/24",
+  "iptables": false,
+  "ip-forward": false,
+  "ip-masq": false,
+  "dns": ["8.8.8.8", "8.8.4.4"]
+}
