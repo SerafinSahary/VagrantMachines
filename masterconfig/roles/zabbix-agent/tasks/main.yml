@@ -1,12 +1,13 @@
 ---
 ### Zabbix Agent 4.0 LTS
 
-- name: Downloading Zabbix repo package
+- name: downloading Zabbix repo package
   get_url:
     url: https://repo.zabbix.com/zabbix/4.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.0-2+bionic_all.deb
     dest: /root
+    force: no
 
-- name: Add Zabbix repo
+- name: add Zabbix repo
   register: zabbixrepoadded
   apt:
     deb: /root/zabbix-release_4.0-2+bionic_all.deb
@@ -18,14 +19,14 @@
     update_cache: yes
     force_apt_get: yes
 
-- name: Install Zabbix Agent
+- name: install Zabbix Agent
   apt:
     update_cache: no
     name: zabbix-agent
     state: present
     force_apt_get: yes
 
-- name: Zabbix Agent log dir
+- name: zabbix Agent log dir
   file:
     state: directory
     path: /var/log/zabbix-agent
@@ -33,7 +34,7 @@
     group: zabbix
     mode: 0755
 
-- name: Configure Zabbix
+- name: configure Zabbix
   template:
     src: roles/zabbix-agent/templates/zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
