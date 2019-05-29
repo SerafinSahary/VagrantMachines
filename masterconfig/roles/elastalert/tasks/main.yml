@@ -8,4 +8,26 @@
     state: present
     tag: latest
 
+- name: config directories setup
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.perms }}"
+  with_items:
+    - { path: '/opt/elastalert', perms: '0755' }
+    - { path: '/opt/elastalert/rules', perms: '0755' }
+    - { path: '/opt/elastalert-server/config', perms: '0755' }
+
+- name: config files setup
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    force: no
+    mode: '0644'
+  with_items:
+    - { src: 'roles/elastalert/files/elastalert.yaml', dest: '/opt/elastalert/config.yaml' }
+    - { src: 'roles/elastalert/files/elastalert-test.yaml', dest: '/opt/elastalert/config-test.yaml' }
+    - { src: 'roles/elastalert/files/config.json', dest: '/opt/elastalert-server/config/config.json' }
+    - { src: 'roles/elastalert/files/rule_templates', dest: '/opt/elastalert' }
+
 # vi: set expandtab:
